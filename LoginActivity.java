@@ -50,10 +50,12 @@ public class LoginActivity extends AppCompatActivity {
             prefs.edit()
                     .putBoolean("isLoggedIn", true)
                     .putInt("user_id", user.id)
+                    .putString("username", user.name)
                     .apply();
 
             startActivity(new Intent(this, MainActivity.class));
             finish();
+
         });
 
         tvRegister.setOnClickListener(v ->
