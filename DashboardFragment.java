@@ -1,20 +1,16 @@
 package com.example.studybuddy.ui.dashboard;
 
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
-import com.example.studybuddy.LoginActivity;
 import com.example.studybuddy.R;
 import com.example.studybuddy.ui.assignments.AssignmentsFragment;
 import com.example.studybuddy.ui.calculator.CalculatorFragment;
@@ -24,13 +20,9 @@ import com.example.studybuddy.ui.studytimer.StudyTimerFragment;
 import com.example.studybuddy.ui.timetable.TimetableFragment;
 import com.example.studybuddy.ui.examcountdown.ExamCountdownFragment;
 
-public class DashboardFragment extends Fragment {
+import java.util.Calendar;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true); // ✅ ENABLE TOOLBAR MENU
-    }
+public class DashboardFragment extends Fragment {
 
     @Nullable
     @Override
@@ -41,77 +33,59 @@ public class DashboardFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
+        TextView tvGreeting = view.findViewById(R.id.tvGreeting);
+        TextView tvUsername = view.findViewById(R.id.tvUsername);
+
+        // ---------- GREETING ----------
+        int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+        if (hour < 12) {
+            tvGreeting.setText("Good Morning ");
+        } else if (hour < 17) {
+            tvGreeting.setText("Good Afternoon 🌤️");
+        } else if (hour < 21) {
+            tvGreeting.setText("Good Evening 🌆");
+        } else {
+            tvGreeting.setText("Good Night 🌙");
+        }
+
+        // ---------- USERNAME ----------
+        SharedPreferences prefs =
+                requireContext().getSharedPreferences("StudyBuddyPrefs", 0);
+
+        String username = prefs.getString("username", "Student");
+        tvUsername.setText(username);
+
+        // ---------- CARD CLICKS ----------
         view.findViewById(R.id.cardTimetable)
-                .setOnClickListener(v -> openFragment(new TimetableFragment()));
+                .setOnClickListener(v -> open(new TimetableFragment()));
 
         view.findViewById(R.id.cardAssignments)
-                .setOnClickListener(v -> openFragment(new AssignmentsFragment()));
+                .setOnClickListener(v -> open(new AssignmentsFragment()));
 
         view.findViewById(R.id.cardNotes)
-                .setOnClickListener(v -> openFragment(new NotesFragment()));
+                .setOnClickListener(v -> open(new NotesFragment()));
 
         view.findViewById(R.id.cardExpenses)
-                .setOnClickListener(v -> openFragment(new ExpenseFragment()));
+                .setOnClickListener(v -> open(new ExpenseFragment()));
 
         view.findViewById(R.id.cardStudyTimer)
-                .setOnClickListener(v -> openFragment(new StudyTimerFragment()));
+                .setOnClickListener(v -> open(new StudyTimerFragment()));
 
         view.findViewById(R.id.cardCalculator)
-                .setOnClickListener(v -> openFragment(new CalculatorFragment()));
+                .setOnClickListener(v -> open(new CalculatorFragment()));
 
         view.findViewById(R.id.cardTools)
-                .setOnClickListener(v -> openFragment(new ExamCountdownFragment()));
+                .setOnClickListener(v -> open(new ExamCountdownFragment()));
 
         return view;
     }
 
-    private void openFragment(Fragment fragment) {
+    private void open(Fragment fragment) {
         requireActivity()
                 .getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit();
-    }
-
-    // ================= TOOLBAR MENU =================
-
-    @Override
-    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_dashboard, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        if (item.getItemId() == R.id.menu_logout) {
-            showLogoutDialog();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    // ================= LOGOUT DIALOG =================
-
-    private void showLogoutDialog() {
-
-        new AlertDialog.Builder(requireContext())
-                .setTitle("Logout")
-                .setMessage("Do you want to logout?")
-                .setPositiveButton("Yes", (d, w) -> {
-
-                    requireContext()
-                            .getSharedPreferences("StudyBuddyPrefs", requireContext().MODE_PRIVATE)
-                            .edit()
-                            .clear()
-                            .apply();
-
-                    Intent intent = new Intent(requireContext(), LoginActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                })
-                .setNegativeButton("Cancel", null)
-                .show();
     }
 }

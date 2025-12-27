@@ -19,33 +19,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
-    <!-- ================= HEADER ================= -->
+    <!-- ==== HEADER  ==== -->
     <LinearLayout
         android:id="@+id/header"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:padding="8dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="@color/primary"
         app:layout_constraintTop_toBottomOf="@id/toolbarDashboard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/app_name"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/primary"/>
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_profile"
+            android:background="@drawable/circle_bg"
+            android:padding="6dp"
+            android:contentDescription="Profile"/>
 
-        <TextView
+        <!-- Greeting + Username -->
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/tagline"
-            android:textSize="13sp"
-            android:textColor="#777777"
-            android:layout_marginTop="4dp"/>
+            android:orientation="vertical"
+            android:layout_marginStart="10dp">
+
+            <TextView
+                android:id="@+id/tvGreeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Good Afternoon ☀️"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"/>
+
+            <TextView
+                android:id="@+id/tvUsername"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="hello user"
+                android:textSize="12sp"
+                android:textColor="#DADADA"/>
+        </LinearLayout>
+
     </LinearLayout>
 
     <!-- ================= DASHBOARD GRID ================= -->
@@ -273,19 +297,33 @@
         </androidx.cardview.widget.CardView>
 
     </GridLayout>
-
-    <!-- ================= FOOTER ================= -->
-    <TextView
+    <!-- ================= FOOTER (AESTHETIC TEXT) ================= -->
+    <LinearLayout
         android:id="@+id/footer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/footer_text"
-        android:textSize="12sp"
-        android:textColor="#666666"
+        android:orientation="vertical"
         android:gravity="center"
-        android:padding="10dp"
+        android:paddingBottom="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Make today productive 🌿"
+            android:textSize="13sp"
+            android:textStyle="italic"
+            android:textColor="#7A7A7A"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Small steps every day lead to big success"
+            android:textSize="11sp"
+            android:textColor="#9A9A9A"
+            android:layout_marginTop="2dp"/>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
