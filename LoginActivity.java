@@ -3,7 +3,9 @@ package com.example.studybuddy;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,13 +22,41 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Input fields
         EditText etEmail = findViewById(R.id.etEmail);
         EditText etPassword = findViewById(R.id.etPassword);
+
+        // Checkbox
+        CheckBox cbShowPassword = findViewById(R.id.cbShowPassword);
+
+        // Buttons / links
         Button btnLogin = findViewById(R.id.btnLogin);
         TextView tvRegister = findViewById(R.id.tvRegister);
 
         AppDatabase db = AppDatabase.getInstance(this);
 
+        /* ===============================
+           👁️ SHOW / HIDE PASSWORD (Checkbox)
+           =============================== */
+        cbShowPassword.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                etPassword.setInputType(
+                        InputType.TYPE_CLASS_TEXT |
+                                InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                );
+            } else {
+                etPassword.setInputType(
+                        InputType.TYPE_CLASS_TEXT |
+                                InputType.TYPE_TEXT_VARIATION_PASSWORD
+                );
+            }
+            // Keep cursor at end
+            etPassword.setSelection(etPassword.getText().length());
+        });
+
+        /* ===============================
+           ✅ LOGIN BUTTON
+           =============================== */
         btnLogin.setOnClickListener(v -> {
 
             String email = etEmail.getText().toString().trim();
@@ -55,11 +85,14 @@ public class LoginActivity extends AppCompatActivity {
 
             startActivity(new Intent(this, MainActivity.class));
             finish();
-
         });
 
-        tvRegister.setOnClickListener(v ->
-                startActivity(new Intent(this, RegisterActivity.class))
-        );
+        /* ===============================
+           🔁 NEW USER → REGISTER
+           =============================== */
+        tvRegister.setOnClickListener(v -> {
+            startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+            finish(); // recommended
+        });
     }
 }
