@@ -31,15 +31,16 @@ public class DashboardFragment extends Fragment {
             @Nullable ViewGroup container,
             @Nullable Bundle savedInstanceState) {
 
+        // Inflate the layout using the transparent MaterialCardView design
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
 
         TextView tvGreeting = view.findViewById(R.id.tvGreeting);
         TextView tvUsername = view.findViewById(R.id.tvUsername);
 
-        // ---------- GREETING ----------
+        // ---------- GREETING LOGIC ----------
         int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
         if (hour < 12) {
-            tvGreeting.setText("Good Morning ");
+            tvGreeting.setText("Good Morning \uD83C\uDF3C");
         } else if (hour < 17) {
             tvGreeting.setText("Good Afternoon 🌤️");
         } else if (hour < 21) {
@@ -48,14 +49,17 @@ public class DashboardFragment extends Fragment {
             tvGreeting.setText("Good Night 🌙");
         }
 
-        // ---------- USERNAME ----------
+        // ---------- FETCH USERNAME ----------
         SharedPreferences prefs =
                 requireContext().getSharedPreferences("StudyBuddyPrefs", 0);
 
-        String username = prefs.getString("username", "Student");
+        // Standardized to "kruti" based on your screenshot or default to Student
+        String username = prefs.getString("username", "kruti");
         tvUsername.setText(username);
 
-        // ---------- CARD CLICKS ----------
+        // ---------- ICON CLICK LISTENERS ----------
+        // These IDs match the MaterialCardView containers in the XML
+
         view.findViewById(R.id.cardTimetable)
                 .setOnClickListener(v -> open(new TimetableFragment()));
 
@@ -74,16 +78,26 @@ public class DashboardFragment extends Fragment {
         view.findViewById(R.id.cardCalculator)
                 .setOnClickListener(v -> open(new CalculatorFragment()));
 
-        view.findViewById(R.id.cardTools)
+        view.findViewById(R.id.cardExamCountdown)
                 .setOnClickListener(v -> open(new ExamCountdownFragment()));
 
         return view;
     }
 
+    /**
+     * Opens a fragment with a smooth slide-and-fade animation
+     * to match the premium transparent icon look.
+     */
     private void open(Fragment fragment) {
         requireActivity()
                 .getSupportFragmentManager()
                 .beginTransaction()
+                .setCustomAnimations(
+                        android.R.anim.slide_in_left,  // Enter
+                        android.R.anim.fade_out,       // Exit
+                        android.R.anim.fade_in,        // Pop Enter
+                        android.R.anim.slide_out_right // Pop Exit
+                )
                 .replace(R.id.fragment_container, fragment)
                 .addToBackStack(null)
                 .commit();
