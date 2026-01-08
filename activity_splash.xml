@@ -6,15 +6,27 @@
     android:gravity="center"
     android:background="@color/white">
 
+    <!-- App Logo -->
+    <!-- 🔹 Marwadi University Logo (MANDATORY) -->
+    <ImageView
+        android:id="@+id/imgUniversityLogo"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/marwadi_university_logo"
+        android:contentDescription="Marwadi University Logo"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="24dp"/>
+    <!-- App Name -->
     <TextView
         android:text="StudyBuddy"
         android:textSize="32sp"
         android:textStyle="bold"
         android:textColor="@color/primary"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="6dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
+    <!-- Tagline -->
     <TextView
         android:text="College Student Helper App"
         android:textSize="14sp"

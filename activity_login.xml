@@ -1,56 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     android:padding="24dp"
     android:background="@color/white">
 
+    <!-- ================= LOGIN HEADING ================= -->
     <TextView
-        android:text="Login"
+        android:id="@+id/tvLoginTitle"
+        android:text="@string/login"
         android:textSize="26sp"
         android:textStyle="bold"
         android:textColor="@color/primary"
-        android:layout_marginBottom="24dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="32dp"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
+
+    <!-- ================= EMAIL ================= -->
+    <TextView
+        android:id="@+id/labelEmail"
+        android:text="@string/email"
+        android:textColor="@color/textSecondary"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/etEmail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Email"
-        android:textColor="@android:color/black"
-        android:textColorHint="#888888"
-        android:background="@android:color/white"
+        android:layout_height="48dp"
+        android:background="@android:drawable/edit_text"
+        android:hint="@string/email"
+        android:labelFor="@id/labelEmail"
         android:inputType="textEmailAddress"
-        android:padding="12dp"/>
+        android:importantForAutofill="yes"
+        android:autofillHints="emailAddress"
+        android:padding="12dp"
+        android:textColor="@color/textPrimary"
+        android:textColorHint="@color/textSecondary" />
+
+    <!-- ================= PASSWORD ================= -->
+    <TextView
+        android:id="@+id/labelPassword"
+        android:text="@string/password"
+        android:textColor="@color/textSecondary"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Password"
-        android:textColor="@android:color/black"
-        android:textColorHint="#888888"
-        android:background="@android:color/white"
+        android:layout_height="48dp"
+        android:background="@android:drawable/edit_text"
+        android:hint="@string/password"
+        android:labelFor="@id/labelPassword"
         android:inputType="textPassword"
-        android:padding="12dp"/>
+        android:importantForAutofill="yes"
+        android:autofillHints="password"
+        android:padding="12dp"
+        android:textColor="@color/textPrimary"
+        android:textColorHint="@color/textSecondary" />
 
+    <!-- ================= SHOW PASSWORD ================= -->
+    <CheckBox
+        android:id="@+id/cbShowPassword"
+        android:text="@string/show_password"
+        android:textColor="@color/textSecondary"
+        android:layout_marginTop="6dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <!-- ================= LOGIN BUTTON ================= -->
     <Button
         android:id="@+id/btnLogin"
-        android:text="Login"
-        android:layout_marginTop="20dp"
+        android:text="@string/login"
+        android:layout_marginTop="28dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="48dp" />
 
+    <!-- ================= REGISTER REDIRECT ================= -->
     <TextView
         android:id="@+id/tvRegister"
-        android:text="New user? Register here"
+        android:text="@string/new_user_register"
         android:textColor="@color/primary"
         android:layout_marginTop="16dp"
+        android:layout_gravity="center"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
