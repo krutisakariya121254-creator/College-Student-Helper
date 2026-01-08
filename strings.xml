@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- App -->
+    <string name="app_name">StudyBuddy</string>
+    <string name="tagline">Study smarter, one day at a time.</string>
+    <string name="footer_text">Make today productive 🌿</string>
+
+    <!-- Common / Placeholder -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Dashboard / Tools -->
+    <string name="timetable">Timetable</string>
+    <string name="assignments">Assignments</string>
+    <string name="notes">Notes</string>
+    <string name="expenses">Expenses</string>
+    <string name="study_timer">Study Timer</string>
+    <string name="calculator">Calculator</string>
+    <string name="tools">Tools</string>
+
+    <!-- Logout -->
+    <string name="logout">Logout</string>
+
+    <!-- Timetable -->
+    <string name="add_class">Add Class</string>
+    <string name="subject">Subject</string>
+    <string name="day">Day</string>
+    <string name="time">Time</string>
+    <string name="room">Room</string>
+
+    <!-- Assignments -->
+    <string name="no_assignments">No assignments yet</string>
+    <string name="add_assignment">Add Assignment</string>
+    <string name="assignment_title">Assignment title</string>
+    <string name="pick_due_date">Pick due date</string>
+    <string name="pending">Pending</string>
+    <string name="submitted">Submitted</string>
+
+    <!-- Expenses -->
+    <string name="no_expenses">No expenses yet</string>
+    <string name="add_expense">Add Expense</string>
+
+    <!-- Exam Countdown -->
+    <string name="hint_exam_title">Exam title</string>
+    <string name="pick_exam_date">Pick exam date</string>
+    <string name="pick_exam_time">Pick exam time</string>
+
+    <!-- Authentication -->
+    <string name="register">Register</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>'
+    <string name="show_password">Show password</string>
+    <string name="register_btn">REGISTER</string>
+    <string name="already_have_account">Already have an account? Login</string>
+
+    <string name="login">Login</string>
+    <string name="new_user_register">New user? Register here</string>
+
+</resources>

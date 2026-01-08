@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base colors -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Primary app colors -->
+    <color name="primary">#2F5BEA</color>        <!-- MAIN primary (used everywhere) -->
+    <color name="primaryDark">#1F3A8A</color>
+    <color name="accent">#6C8CFF</color>
+
+    <!-- Button / icon contrast -->
+    <color name="onPrimary">#FFFFFF</color>
+
+    <!-- Backgrounds -->
+    <color name="background">#FFFFFF</color>
+    <color name="card_bg">#FFFFFF</color>
+
+    <!-- Text colors -->
+    <color name="textPrimary">#212121</color>
+    <color name="textSecondary">#757575</color>
+
+    <!-- Status colors -->
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FF9800</color>
+    <color name="danger">#E53935</color>
+
+</resources>
